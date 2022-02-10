@@ -5,7 +5,7 @@ import { CategoriesList } from "./components/CategoriesList";
 import "./App.css";
 
 const App = () => {
-  const [API_URL, SetAPI_URL] = useState(
+  const [API_URL, setAPI_URL] = useState(
     "https://api.chucknorris.io/jokes/random"
   );
   const [categories, setCategories] = useState([]);
@@ -31,10 +31,24 @@ const App = () => {
   }, [API_URL]);
 
   useEffect(() => {
+    fetchQuote().catch();
+  }, [API_URL]);
+
+  useEffect(() => {
     fetchLogoSrc().catch();
     fetchCategories().catch();
-    fetchQuote().catch();
   }, []);
+
+  const handleClick = (category) => () => {
+    if (category !== "random") {
+      if (API_URL.includes(category)) fetchQuote();
+      setAPI_URL(
+        `https://api.chucknorris.io/jokes/random?category=${category}`
+      );
+    } else {
+      fetchQuote();
+    }
+  };
 
   return (
     <div className="app">
@@ -42,7 +56,7 @@ const App = () => {
         <img className="logo" src={logoSrc} alt="Chuck Norris" />
         <h1>Chuck Norris</h1>
       </header>
-      <CategoriesList categories={categories} />
+      <CategoriesList categories={categories} handleClick={handleClick} />
       <div className="quote-block">
         <div className="quote">
           <p className="quote-text">{quote}</p>
