@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#root {
+    width: 1440px;
+    height: 100vh;
+    background-color: #E5E5E5;
+}
