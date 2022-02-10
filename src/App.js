@@ -43,6 +43,11 @@ const App = () => {
         <h1>Chuck Norris</h1>
       </header>
       <CategoriesList categories={categories} />
+      <div className="quote-block">
+        <div className="quote">
+          <p className="quote-text">{quote}</p>
+        </div>
+      </div>
     </div>
   );
 };
