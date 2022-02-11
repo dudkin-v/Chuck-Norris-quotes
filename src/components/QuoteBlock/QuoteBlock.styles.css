@@ -1,0 +1,32 @@
+.quote-block {
+    position: relative;
+    padding: 165px 160px 144px;
+}
+
+.quote {
+    position: absolute;
+    top: 165px;
+    left: 160px;
+    right: 160px;
+    z-index: 2;
+    background-color: #422ed4;
+    box-shadow: 0 100px 80px rgba(80, 76, 103, 0.07),
+    0 0 10px rgba(80, 76, 103, 0.035);
+    border-radius: 25px;
+    padding: 24px;
+    min-height: 114px;
+}
+
+.quote-text {
+    font-size: 20px;
+    line-height: 30px;
+    color: #ffffff;
+}
+
+.chuck-img {
+    position: absolute;
+    left: 1134px;
+    top: 12px;
+    width: 122px;
+    height: 258px;
+}
