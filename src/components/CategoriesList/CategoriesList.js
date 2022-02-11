@@ -6,9 +6,13 @@ const CategoriesList = ({ categories, handleClick }) => (
   <div className="categories-block">
     <h2 className="categories-heading">Categories</h2>
     <ul className="categories-list">
-      {categories.map((category, index) => (
-        <li className="categories-list-item" key={index}>
-          <button className="category-btn" type="button" onClick={handleClick(category)}>
+      {categories.map((category) => (
+        <li className="categories-list-item" key={category}>
+          <button
+            className="category-btn"
+            type="button"
+            onClick={handleClick(category)}
+          >
             {category}
           </button>
         </li>
@@ -18,7 +22,7 @@ const CategoriesList = ({ categories, handleClick }) => (
 );
 
 CategoriesList.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 
