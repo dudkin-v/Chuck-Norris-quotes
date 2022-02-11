@@ -5,15 +5,14 @@ import { CategoriesList } from "./components/CategoriesList";
 import "./App.css";
 
 const App = () => {
-  const [API_URL, setAPI_URL] = useState(
-    "https://api.chucknorris.io/jokes/random"
-  );
   const [categories, setCategories] = useState([]);
   const [quote, setQuote] = useState("");
   const [logoSrc, setLogoSrc] = useState("");
+  const RANDOM_URL = "https://api.chucknorris.io/jokes/random";
+  const CATEGORY_URL = "https://api.chucknorris.io/jokes/random?category=";
 
   const fetchLogoSrc = useCallback(async () => {
-    const response = await fetch(API_URL);
+    const response = await fetch(RANDOM_URL);
     const data = await response.json();
     setLogoSrc(data.icon_url);
   }, []);
@@ -24,30 +23,20 @@ const App = () => {
     setCategories([...data, "random"]);
   }, []);
 
-  const fetchQuote = useCallback(async () => {
-    const response = await fetch(API_URL);
+  const fetchQuote = async (url) => {
+    const response = await fetch(url);
     const data = await response.json();
     setQuote(data.value);
-  }, [API_URL]);
-
-  useEffect(() => {
-    fetchQuote().catch();
-  }, [API_URL]);
+  };
 
   useEffect(() => {
     fetchLogoSrc().catch();
     fetchCategories().catch();
+    fetchQuote(RANDOM_URL);
   }, []);
 
   const handleClick = (category) => () => {
-    if (category !== "random") {
-      if (API_URL.includes(category)) fetchQuote();
-      setAPI_URL(
-        `https://api.chucknorris.io/jokes/random?category=${category}`
-      );
-    } else {
-      fetchQuote();
-    }
+    fetchQuote(category === "random" ? RANDOM_URL : CATEGORY_URL + category);
   };
 
   return (
