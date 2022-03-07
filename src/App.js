@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
+import { Header } from "./components/Header";
 import { CategoriesList } from "./components/CategoriesList";
 import { QuoteBlock } from "./components/QuoteBlock";
 
@@ -45,10 +46,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <header className="header">
-        <img className="logo" src={logoSrc} alt="Chuck Norris" />
-        <h1>Chuck Norris</h1>
-      </header>
+      <Header logoSrc={logoSrc} />
       <CategoriesList categories={categories} handleClick={handleClick} />
       <QuoteBlock quote={quote} />
     </div>

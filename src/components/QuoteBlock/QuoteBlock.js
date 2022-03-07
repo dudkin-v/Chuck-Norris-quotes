@@ -8,7 +8,6 @@ const QuoteBlock = ({ quote }) => (
       <p className="quote-text">{quote}</p>
     </div>
     {/* eslint-disable-next-line global-require */}
-    <img className="chuck-img" src={require("./chuck_norris.png")} alt="Chuck Norris" />
   </div>
 );
 
