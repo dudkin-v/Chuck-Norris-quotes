@@ -1,9 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
+import { Container, ThemeProvider, styled } from "@mui/material";
 
-import { CategoriesList } from "./components/CategoriesList";
+import Theme from "./components/Theme/Theme";
+import { Header } from "./components/Header";
+import { CategoriesBlock } from "./components/CategoriesBlock";
 import { QuoteBlock } from "./components/QuoteBlock";
 
-import "./App.css";
+const Wrapper = styled(Container)`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  min-height: 100vh;
+`;
 
 const RANDOM_URL = "https://api.chucknorris.io/jokes/random";
 const CATEGORY_URL = "https://api.chucknorris.io/jokes/random?category=";
@@ -44,14 +54,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <header className="header">
-        <img className="logo" src={logoSrc} alt="Chuck Norris" />
-        <h1>Chuck Norris</h1>
-      </header>
-      <CategoriesList categories={categories} handleClick={handleClick} />
+    <ThemeProvider theme={Theme}>
+      <Wrapper>
+      <Header logoSrc={logoSrc} />
+      <CategoriesBlock categories={categories} handleClick={handleClick} />
       <QuoteBlock quote={quote} />
-    </div>
+      </Wrapper>
+    </ThemeProvider>
   );
 };
 
