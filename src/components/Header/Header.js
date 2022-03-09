@@ -1,31 +1,41 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import { AppBar, Typography, styled, Container } from "@mui/material";
+import Box from "@mui/material/Box";
+import Theme from "../Theme/Theme";
 
-const HeaderBlock = styled.header`
+const HeaderBlock = styled(AppBar)`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px 0;
+  width: 100%;
+  background-color: ${Theme.palette.primary.main};
+`;
+const HeaderContent = styled(Container)`
+  display: flex;
+  flex-direction: row;
   justify-content: start;
   align-items: center;
-  background-color: #422ed4;
-  padding: 8px 10%;
+  @media (min-width: 1024px) {
+    padding: 0 184px;
+  }
 `;
-
-const Logo = styled.img`
+const HeaderLogo = styled(Box)`
   width: 43px;
   height: 43px;
 `;
-
-const Heading = styled.h1`
+const HeaderHeading = styled(Typography)`
+  padding: 0 10px;
   font-size: 16px;
   font-weight: 800;
-  line-height: 19px;
-  color: #ffffff;
-  padding: 0 10px;
 `;
 
 const Header = ({ logoSrc }) => (
-  <HeaderBlock>
-    <Logo src={logoSrc} alt="Chuck Norris" />
-    <Heading>Chuck Norris</Heading>
+  <HeaderBlock component="header">
+    <HeaderContent>
+      <HeaderLogo component="img" alt="Chuck Norris logo" src={logoSrc} />
+      <HeaderHeading variant="h1">Chuck Norris</HeaderHeading>
+    </HeaderContent>
   </HeaderBlock>
 );
 
