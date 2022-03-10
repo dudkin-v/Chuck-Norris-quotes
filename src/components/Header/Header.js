@@ -32,6 +32,9 @@ const HeaderForm = styled(FormGroup)`
   @media (min-width: 1024px) {
     padding-right: 184px;
   }
+  @media (max-width: 600px) {
+    padding-right: 16px;
+  }
 `;
 
 const Header = ({ logoSrc, onChangeTheme, theme }) => (
