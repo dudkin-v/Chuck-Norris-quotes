@@ -22,12 +22,22 @@ const CategoriesHeading = styled(Typography)`
     padding: 90px 0 20px;
     font-size: 36px;
   }
+  @media (max-height: 500px) {
+    padding: 90px 0 20px;
+    font-size: 36px;
+  }
 `;
 const CategoriesList = styled(List)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   @media (max-width: 425px) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    overflow-x: scroll;
+    max-width: 100%;
+  }
+  @media (max-height: 500px) {
     flex-wrap: nowrap;
     justify-content: space-between;
     overflow-x: scroll;
