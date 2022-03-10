@@ -11,7 +11,7 @@ const Wrapper = styled(Container)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100vw;
+  min-width: 100vw;
   min-height: 100vh;
 `;
 
@@ -62,7 +62,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme.theme}>
-      <Wrapper sx={{backgroundColor: "background.default", minWidth: "100vw" }}>
+      <Wrapper sx={{backgroundColor: "background.default"}}>
       <Header logoSrc={logoSrc} onChangeTheme={onChangeTheme} theme={theme.name}/>
       <CategoriesBlock categories={categories} handleClick={handleClick} />
       <QuoteBlock quote={quote} />
