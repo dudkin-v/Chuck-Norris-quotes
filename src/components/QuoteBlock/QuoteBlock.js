@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Typography, Container, Box, styled } from "@mui/material";
-import Theme from "../Theme/Theme";
 
 const QuoteContainer = styled(Container)`
   position: relative;
@@ -22,7 +21,6 @@ const QuoteBox = styled(Box)`
   border-radius: 25px;
   box-shadow: 0 100px 80px rgba(80, 76, 103, 0.07),
   0 0 10px rgba(80, 76, 103, 0.035);
-  background-color: ${Theme.palette.primary.main};
   z-index: 2;
   @media (max-width: 600px) {
     padding: 16px;
@@ -44,13 +42,19 @@ const ChuckImage = styled(Box)`
   }
   @media (max-width: 600px) {
     right: 5%;
-    top: -30%;
+    width: 90px;
+    height: auto;
+  }
+  @media (max-height: 500px) {
+    top: -1%;
+    width: 90px;
+    height: auto;
   }
 `;
 
 const QuoteBlock = ({ quote }) => (
   <QuoteContainer component="section">
-    <QuoteBox>
+    <QuoteBox sx={{backgroundColor: "primary.main"}}>
       <Typography variant="body1">{quote}</Typography>
     </QuoteBox>
     <ChuckImage

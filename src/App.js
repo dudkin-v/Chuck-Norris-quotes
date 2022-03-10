@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Container, ThemeProvider, styled } from "@mui/material";
 
-import Theme from "./components/Theme/Theme";
+import Themes from "./components/Theme/Theme";
 import { Header } from "./components/Header";
 import { CategoriesBlock } from "./components/CategoriesBlock";
 import { QuoteBlock } from "./components/QuoteBlock";
@@ -22,6 +22,7 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [quote, setQuote] = useState("");
   const [logoSrc, setLogoSrc] = useState("");
+  const [isLightTheme, setLightTheme] = useState(true);
 
   const fetchLogoSrc = useCallback(async () => {
     const response = await fetch(RANDOM_URL);
@@ -47,16 +48,22 @@ const App = () => {
     ).catch();
   };
 
+  const onChangeTheme = () => {
+    setLightTheme(prevTheme => !prevTheme)
+  };
+
   useEffect(() => {
     fetchLogoSrc().catch();
     fetchCategories().catch();
     fetchQuote(RANDOM_URL).catch();
   }, []);
 
+  const theme = isLightTheme ? Themes.lightTheme : Themes.darkTheme;
+
   return (
-    <ThemeProvider theme={Theme}>
-      <Wrapper>
-      <Header logoSrc={logoSrc} />
+    <ThemeProvider theme={theme.theme}>
+      <Wrapper sx={{backgroundColor: "background.default", minWidth: "100vw" }}>
+      <Header logoSrc={logoSrc} onChangeTheme={onChangeTheme} theme={theme.name}/>
       <CategoriesBlock categories={categories} handleClick={handleClick} />
       <QuoteBlock quote={quote} />
       </Wrapper>
